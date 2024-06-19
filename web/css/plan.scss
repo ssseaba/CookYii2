@@ -1,0 +1,71 @@
+body{
+    font-family: 'Montserrat', sans-serif;     
+}
+.plan{
+  .plan-d{
+    padding: 20px;
+
+  }
+  .container{
+    background-color: #B0CC0D;
+    width: 70%;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 
+  }
+  h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+option{
+  outline: none;
+}
+input{
+  width: 98%;
+    padding: 10px 10px 5px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+button {
+    background-color: #FFA800;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fafafa;
+}
+}
+
+@media screen and (max-width:768px){
+   .plan{
+    .plan-d{
+        input{
+            width: 93%;
+           }
+    }
+   }
+}

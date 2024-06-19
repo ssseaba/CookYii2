@@ -33,10 +33,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <header class="container">
     <div class="head">
         <div class="burger-menu">
-            <img src="img/burger.png" alt="">
+             <img src="/img/burger.png" alt="">
         </div>
         <div class="logo">
-            <img src="img/logo.png" alt="">
+            <a href="/site/index"> <img src="/img/logo.png" alt=""> </a>
         </div>
         <div>
             <ul class="menu-t">
@@ -49,27 +49,27 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <div class="info">
             <div class="number">
                 <div>
-                    <img src="img/zv.png" alt="">
+                    <img src="/img/zv.png" alt="">
                 </div>
                 <p>591 902 883</p>
             </div>
             <div class="language">
                 <p>EN</p>
                 <div>
-                    <img src="img/str.png" alt="">
+                    <img src="/img/str.png" alt="">
                 </div>
             </div>
         </div>
 
         <div class="login">
             <?php if (Yii::$app->user->isGuest): ?>
-                <button id="menuButton"><img src="img/login.png" alt=""><p>sign in</p></button>
+                <button id="menuButton"><img src="/img/login.png" alt=""></button>
                 <div id="dropdown" class="dropdown-content">
                     <a href="#" id="signupLink">Sign Up</a>
                     <a href="#" id="loginLink">Login</a>
                 </div>
             <?php else: ?>
-                <a href="<?= \yii\helpers\Url::to(['site/logout']) ?>" data-method="post">Logout (<?= Yii::$app->user->identity->username ?>)</a>
+                <a class="log"  href="<?= \yii\helpers\Url::to(['site/logout']) ?>" data-method="post">Logout</a>
             <?php endif; ?>
         </div>
     </div>
@@ -95,6 +95,25 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     </div>
 </div>
 
+<!--<div id="loginPopup" class="popup">-->
+<!--    <div class="popup-content">-->
+<!--        <span class="close" id="closeLogin">&times;</span>-->
+<!--        --><?php
+//        $loginModel = new \app\models\LoginForm();
+//        $form = ActiveForm::begin([
+//            'id' => 'form-login',
+//            'action' => ['/site/login'],
+//        ]);
+//        echo $form->field($loginModel, 'username')->textInput(['id' => 'loginName']);
+//        echo $form->field($loginModel, 'password')->passwordInput(['id' => 'loginPassword']);
+//        ?>
+<!--        <div class="form-group">-->
+<!--            --><?php //= Html::submitButton('Login', ['class' => 'btn btn-primary']) ?>
+<!--        </div>-->
+<!--        --><?php //ActiveForm::end(); ?>
+<!--    </div>-->
+<!--</div>-->
+
 <div id="loginPopup" class="popup">
     <div class="popup-content">
         <span class="close" id="closeLogin">&times;</span>
@@ -103,6 +122,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         $form = ActiveForm::begin([
             'id' => 'form-login',
             'action' => ['/site/login'],
+            'enableClientValidation' => true,
+            'enableAjaxValidation' => false,
         ]);
         echo $form->field($loginModel, 'username')->textInput(['id' => 'loginName']);
         echo $form->field($loginModel, 'password')->passwordInput(['id' => 'loginPassword']);
@@ -116,51 +137,32 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <?= $content ?>
 
-
-<!--<header id="header">-->
-<!--    --><?php
-//    NavBar::begin([
-//        'brandLabel' => Yii::$app->name,
-//        'brandUrl' => Yii::$app->homeUrl,
-//        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
-//    ]);
-//    echo Nav::widget([
-//        'options' => ['class' => 'navbar-nav'],
-//        'items' => [
-//            ['label' => 'Home', 'url' => ['/site/index']],
-//            ['label' => 'About', 'url' => ['/site/about']],
-//            ['label' => 'Contact', 'url' => ['/site/contact']],
-//            ['label' => 'signup', 'url' => ['/site/signup']],
-//            Yii::$app->user->isGuest
-//                ? ['label' => 'Login', 'url' => ['/site/login']]
-//                : '<li class="nav-item">'
-//                    . Html::beginForm(['/site/logout'])
-//                    . Html::submitButton(
-//                        'Logout (' . Yii::$app->user->identity->username . ')',
-//                        ['class' => 'nav-link btn btn-link logout']
-//                    )
-//                    . Html::endForm()
-//                    . '</li>'
-//        ]
-//    ]);
-//    NavBar::end();
-//    ?>
-<!--</header>-->
 <!---->
-<!--<main id="main" class="flex-shrink-0" role="main">-->
-<!--    <div class="container">-->
-<!--        --><?php //if (!empty($this->params['breadcrumbs'])): ?>
-<!--            --><?php //= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
-<!--        --><?php //endif ?>
-<!--        --><?php //= Alert::widget() ?>
-<!--        --><?php //= $content ?>
-<!--    </div>-->
-<!--</main>-->
-
+<?php
+//echo Nav::widget([
+//    'options' => ['class' => 'navbar-nav navbar-right'],
+//    'items' => [
+//        ['label' => 'Home', 'url' => ['/site/index']],
+//        ['label' => 'Admin Panel', 'url' => ['/admin/dish']],
+//        Yii::$app->user->isGuest ? (
+//        ['label' => 'Login', 'url' => ['/site/login']]
+//        ) : (
+//            '<li>'
+//            . Html::beginForm(['/site/logout'], 'post')
+//            . Html::submitButton(
+//                'Logout (' . Yii::$app->user->identity->username . ')',
+//                ['class' => 'btn btn-link logout']
+//            )
+//            . Html::endForm()
+//            . '</li>'
+//        )
+//    ],
+//]);
+//?>
 <footer id="container2">
     <div class="foot container">
         <div>
-            <img class="img-1" src="img/logo 2.png" alt="">
+            <img class="img-1" src="/img/logo 2.png" alt="">
         </div>
         <div>
             <ul>
@@ -171,16 +173,19 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             </ul>
         </div>
         <div >
-            <img class="img-2" src="img/foot1.png" alt="">
+            <img class="img-2" src="/img/foot1.png" alt="">
         </div>
     </div>
 </footer>
 
 <style>
     #menuButton {
-        margin: 20px;
-        padding: 10px 20px;
+        margin-top: -3px;
+        padding: 5px;
         font-size: 16px;
+        background-color: #FFA800;
+        border: none;
+        border-radius: 15px;
     }
 
     .dropdown-content {
@@ -246,6 +251,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
     label, input, button {
         margin: 10px 0;
+    }
+    .log{
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
     }
 </style>
 <script>

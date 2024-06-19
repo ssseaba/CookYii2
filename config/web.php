@@ -12,6 +12,28 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'enableStrictParsing' => false,
+            'rules' => [
+                // другие правила
+                'admin/dish/<id:\d+>' => 'dish/view',
+                'admin/dish/update/<id:\d+>' => 'dish/update',
+                'admin/dish/delete/<id:\d+>' => 'dish/delete',
+                'admin/dish/create' => 'dish/create',
+                'admin/dish' => 'dish/index',
+            ],
+        ],
+        'mailer' => [
+            'class' => \yii\symfonymailer\Mailer::class,
+            'transport' => [
+                'dsn' => 'smtp://dev@ateplykh.ru:XaB%YIy9@smtp.beget.com:465',
+            ],
+            'viewPath' => '@app/mail',
+            'useFileTransport' => false,
+        ],
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '2-PYiMks6ssz8WnkGIDxVKXTRgHlgyzL',
@@ -26,12 +48,12 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
-            'viewPath' => '@app/mail',
-            // send all mails to a file by default.
-            'useFileTransport' => true,
-        ],
+//        'mailer' => [
+//            'class' => \yii\symfonymailr\Mailer::class,
+//            'viewPath' => '@app/mail',
+//            // send all mails to a file by default.
+//            'useFileTransport' => true,
+//        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -67,7 +89,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1', '192.168.0.*'],
     ];
 }
 

@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignupForm;
+use yii\helpers\Html;
 
 class SiteController extends Controller
 {
@@ -74,11 +75,31 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionCalories(){
+        return $this->render('calories');
+    }
+
     /**
      * Login action.
      *
      * @return Response|string
      */
+//    public function actionLogin()
+//    {
+//        if (!Yii::$app->user->isGuest) {
+//            return $this->goHome();
+//        }
+//
+//        $model = new LoginForm();
+//        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+//            return $this->goBack();
+//        }
+//
+//        $model->password = '';
+//        return $this->render('login', [
+//            'model' => $model,
+//        ]);
+//    }
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -86,11 +107,11 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
 
-        $model->password = '';
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -136,6 +157,10 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionRar(){
+        return $this->render('rar');
+    }
+
     public function actionAddAdmin() {
         $model = User::find()->where(['username' => 'admin'])->one();
         if (empty($model)) {
@@ -165,5 +190,22 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+
+
+
+    public function actionMail()
+    {
+        $name = Html::encode(Yii::$app->request->post('name'));
+        $number = Html::encode(Yii::$app->request->post('number'));
+        $email = Html::encode(Yii::$app->request->post('email'));
+
+        // Настраиваем отправку почты
+        Yii::$app->mailer->compose()
+            ->setFrom(['dev@ateplykh.ru'])
+            ->setTo('sabdullaevaa545@gmail.com') // Замените на ваш email
+            ->setSubject('Contact Form Submission')
+            ->setTextBody("Name: $name\nPhone: $number\nEmail: $email")
+            ->send();
     }
 }

@@ -2,6 +2,16 @@ main > .container {
 
 }
 
+.popup-content{
+    border-radius: 25px;
+}
+.btn-primary{
+    background-color: #B0CC0D;
+    border: none;
+}
+.btn-primary:hover{
+    background-color:#FFA800;
+}
 .footer {
     background-color: #f5f5f5;
     font-size: .9em;
