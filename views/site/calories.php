@@ -3,16 +3,13 @@
 $this->registerCssFile("@web/css/calor.css", [
     'depends' => [yii\bootstrap5\BootstrapAsset::class],
 ]);
-$this->registerCssFile("@web/css/style.css", [
-    'depends' => [yii\bootstrap5\BootstrapAsset::class],
-]);
 ?>
 <body>
-    <div class="calc container">
+    <div class="calc container2">
         <div>
             <h1>Calorie Calculator</h1>
             <div class="calc-fon">
-            <div class="calc-r">
+
                 <div>
                     <label for="weight">Вес (кг):</label>
                     <input type="number" id="weight" placeholder="Введите ваш вес" required>
@@ -49,7 +46,6 @@ $this->registerCssFile("@web/css/style.css", [
                 <button onclick="calculateCalories()">Рассчитать</button>
 
                 <div id="result"></div>
-            </div>
         </div>
         </div>
     </div>

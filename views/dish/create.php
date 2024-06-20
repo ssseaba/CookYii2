@@ -28,11 +28,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'imageFile')->fileInput() ?>
 
-    <?php if ($model->image): ?>
-        <p>Current Image:</p>
-        <?= Html::img('@web/' . $model->image, ['class' => 'img-thumbnail']) ?>
-    <?php endif; ?>
-
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

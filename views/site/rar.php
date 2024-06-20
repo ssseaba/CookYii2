@@ -1,16 +1,10 @@
-<?php
-$this->registerCssFile("@web/css/calor.css", [
-    'depends' => [yii\bootstrap5\BootstrapAsset::class],
-]);
-$this->registerCssFile("@web/css/style.css", [
-    'depends' => [yii\bootstrap5\BootstrapAsset::class],
-]);
-?>
+
 <body class="plan">
     <div class="plan-d">
-    <div class="container">
+    <div class="container2">
         <h1>План питания для похудения</h1>
-        <form id="survey-form">
+        <form action="/site/mail2" enctype="multipart/form-data"  method="post"  id="survey-form">
+            <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>"/>
             <label for="age">Возраст:</label>
             <input type="number" id="age" name="age" min="1" required>
 
@@ -21,7 +15,7 @@ $this->registerCssFile("@web/css/style.css", [
             <input type="number" id="weight" name="weight" min="1" required>
 
             <label for="desired-weight">Желаемый вес (кг):</label>
-            <input type="number" id="desired-weight" name="desired-weight" min="1" required>
+            <input type="number" id="desired" name="desired" min="1" required>
 
             <label for="activity">Насколько вы физически активны?</label>
             <select id="activity" name="activity">
@@ -38,7 +32,7 @@ $this->registerCssFile("@web/css/style.css", [
             </select>
 
             <label for="weight-loss">Легко ли вам похудеть?</label>
-            <select id="weight-loss" name="weight-loss">
+            <select id="weighta" name="weighta">
                 <option value="easy">Легко</option>
                 <option value="moderate">Средне</option>
                 <option value="hard">Трудно</option>
@@ -54,7 +48,7 @@ $this->registerCssFile("@web/css/style.css", [
             </select>
 
             <label for="daily-routine">Как проходит ваш обычный день?</label>
-            <select id="daily-routine" name="daily-routine">
+            <select id="daily" name="daily">
                 <option value="sedentary">Сидячий</option>
                 <option value="active">Активный</option>
                 <option value="very-active">Очень активный</option>
@@ -68,13 +62,21 @@ $this->registerCssFile("@web/css/style.css", [
             </select>
 
             <label for="emotional-eating">Количество съеденного зависит от вашего эмоционального состояния?</label>
-            <select id="emotional-eating" name="emotional-eating">
+            <select id="emotional" name="emotional">
                 <option value="no">Нет</option>
                 <option value="sometimes">Иногда</option>
                 <option value="often">Часто</option>
             </select>
 
             <button type="button" onclick="generatePlan()">Создать план</button>
+            <div class="name-phone">
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="text" name="number" placeholder="Your phone number" required>
+            </div>
+            <div>
+                <input class="email" name="email" type="email" placeholder="Your E-mail" required>
+            </div>
+            <button type="submit"  id="but"> Получить индивидуальный план</button>
         </form>
 
         <div id="result" class="result"></div>
@@ -87,14 +89,14 @@ function generatePlan() {
     var age = document.getElementById('age').value;
     var height = document.getElementById('height').value;
     var weight = document.getElementById('weight').value;
-    var desiredWeight = document.getElementById('desired-weight').value;
+    var desired = document.getElementById('desired').value;
     var activity = document.getElementById('activity').value;
     var energy = document.getElementById('energy').value;
-    var weightLoss = document.getElementById('weight-loss').value;
+    var weighta = document.getElementById('weighta').value;
     var foods = Array.from(document.getElementById('foods').selectedOptions).map(option => option.value);
-    var dailyRoutine = document.getElementById('daily-routine').value;
+    var daily = document.getElementById('daily').value;
     var stress = document.getElementById('stress').value;
-    var emotionalEating = document.getElementById('emotional-eating').value;
+    var emotional = document.getElementById('emotional').value;
 
     var result = document.getElementById('result');
     var plan = '';
@@ -106,14 +108,14 @@ function generatePlan() {
         plan += `<p>Возраст: ${age} лет</p>`;
         plan += `<p>Рост: ${height} см</p>`;
         plan += `<p>Текущий вес: ${weight} кг</p>`;
-        plan += `<p>Желаемый вес: ${desiredWeight} кг</p>`;
+        plan += `<p>Желаемый вес: ${desired} кг</p>`;
         plan += `<p>Физическая активность: ${activity}</p>`;
         plan += `<p>Энергичность: ${energy}</p>`;
-        plan += `<p>Легкость похудения: ${weightLoss}</p>`;
+        plan += `<p>Легкость похудения: ${weighta}</p>`;
         plan += `<p>Продукты в рационе: ${foods.join(', ')}</p>`;
-        plan += `<p>Обычный день: ${dailyRoutine}</p>`;
+        plan += `<p>Обычный день: ${daily}</p>`;
         plan += `<p>Частота стресса: ${stress}</p>`;
-        plan += `<p>Эмоциональное состояние и еда: ${emotionalEating}</p>`;
+        plan += `<p>Эмоциональное состояние и еда: ${emotional}</p>`;
 
         // Вычисляем ИМТ (индекс массы тела)
         var bmi = (weight / ((height / 100) ** 2)).toFixed(1);
@@ -145,3 +147,73 @@ function getBmiCategory(bmi) {
     }
 }
 </script>
+<style>
+    body{
+        font-family: 'Montserrat', sans-serif;
+    }
+    .plan-d{
+        padding: 20px;
+
+    }
+    .container2{
+        width: 70%;
+        border-radius: 25px;
+        padding: 20px;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    }
+    h1 {
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    select, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    option{
+        outline: none;
+    }
+    input{
+        width: 98%;
+        padding: 10px 10px 5px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        outline: none;
+    }
+    button {
+        background-color: #FFA800;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+
+    .result {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background: #fafafa;
+    }
+    @media screen and (max-width:768px){
+        .plan{
+        .plan-d{
+        input{
+            width: 93%;
+        }
+    }
+    }
+    }
+
+</style>

@@ -28,6 +28,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
+<?php
+$this->registerCssFile("@web/css/style.css", [
+'depends' => [yii\bootstrap5\BootstrapAsset::class],
+]);
+?>
 <?php $this->beginBody() ?>
 
 <header class="container">
@@ -44,6 +49,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 <a href=""><li>Delivery</li></a>
                 <a href=""><li>FAQ</li></a>
                 <a href=""><li>Contacts</li></a>
+                <a href="/admin/dish"><li>Admin</li></a>
             </ul>
         </div>
         <div class="info">
@@ -249,7 +255,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         flex-direction: column;
     }
 
-    label, input, button {
+     input, button {
         margin: 10px 0;
     }
     .log{
@@ -299,7 +305,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             }
         });
     });
-
 </script>
 
 <?php $this->endBody() ?>

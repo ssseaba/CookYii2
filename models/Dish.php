@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -41,7 +40,6 @@ class Dish extends ActiveRecord
         }
         return false;
     }
-
 
 
 }

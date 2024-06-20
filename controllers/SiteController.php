@@ -191,9 +191,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
-
-
     public function actionMail()
     {
         $name = Html::encode(Yii::$app->request->post('name'));
@@ -207,5 +204,32 @@ class SiteController extends Controller
             ->setSubject('Contact Form Submission')
             ->setTextBody("Name: $name\nPhone: $number\nEmail: $email")
             ->send();
+        return $this->redirect(['site/index']);
+    }
+    public function actionMail2()
+    {
+        $age = Html::encode(Yii::$app->request->post('age'));
+        $height = Html::encode(Yii::$app->request->post('height'));
+        $weight = Html::encode(Yii::$app->request->post('weight'));
+        $desired = Html::encode(Yii::$app->request->post('desired'));
+        $activity = Html::encode(Yii::$app->request->post('activity'));
+        $energy = Html::encode(Yii::$app->request->post('energy'));
+        $weighta = Html::encode(Yii::$app->request->post('weighta'));
+        $foods = Html::encode(Yii::$app->request->post('foods'));
+        $daily = Html::encode(Yii::$app->request->post('daily'));
+        $stress = Html::encode(Yii::$app->request->post('stress'));
+        $emotional = Html::encode(Yii::$app->request->post('emotional'));
+        $name = Html::encode(Yii::$app->request->post('name'));
+        $number = Html::encode(Yii::$app->request->post('number'));
+        $email = Html::encode(Yii::$app->request->post('email'));
+
+        // Настраиваем отправку почты
+        Yii::$app->mailer->compose()
+            ->setFrom(['dev@ateplykh.ru'])
+            ->setTo('sabdullaevaa545@gmail.com')
+            ->setSubject('Contact Form Submission')
+            ->setTextBody("Возраст: $age\nРост: $height\nВес: $weight\nЖелаемый вес: $desired\nФизическая активность: $activity\nЭнерегия: $energy\nЛегкость в похудении: $weighta\nПродукты: $foods\nДень: $daily\nСтресс: $stress\nСъеденное: $emotional\nName: $name\nPhone: $number\nEmail: $email")
+            ->send();
+        return $this->redirect(['site/index']);
     }
 }

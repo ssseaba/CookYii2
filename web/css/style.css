@@ -195,7 +195,7 @@ header .login #openPopup img {
   border-radius: 20px;
 }
 .menu .food .food-menu {
-  height: 400px;
+  height: 420px;
   overflow: hidden;
 }
 .menu .food .food-menu .carousel {
@@ -218,7 +218,7 @@ header .login #openPopup img {
   font-weight: 500;
 }
 .menu .food .food-menu .item .info p {
-  width: 250px;
+  width: 100%;
   padding-top: 5px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -251,7 +251,7 @@ header .login #openPopup img {
 .menu .food .food-menu .controls .next {
   margin-right: 10px;
 }
-.menu .food .p-1 {
+.menu .food .p-11 {
   padding: 50px;
   color: white;
 }
@@ -350,7 +350,7 @@ header .login #openPopup img {
   padding-top: 10px;
 }
 .diet-fon .diet img {
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: -80px;
   width: 700px;
 }
@@ -410,14 +410,12 @@ header .login #openPopup img {
 .form form .name-phone {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 .form form .name-phone input {
   background-color: #F4F4F4;
   outline: none;
   border: none;
   border-radius: 25px;
-  width: 100%;
   height: 40px;
 }
 .form form .name-phone input::-moz-placeholder {
@@ -446,9 +444,11 @@ header .login #openPopup img {
   width: 100%;
   background-color: #FFA800;
   text-align: center;
-  padding-top: 10px;
   height: 30px;
   border-radius: 20px;
+  border: none;
+  color: white;
+  margin-top: -5px;
 }
 .form form .submit a {
   color: rgb(255, 255, 255);
@@ -486,6 +486,16 @@ footer .foot ul a {
 }
 footer .foot ul li {
   list-style-type: none;
+}
+#day-filter{
+  border-radius: 8px;
+  outline: none;
+  background-color:#FFA800;
+  color: white;
+  border: none;
+}
+.carousel img{
+  width: 200px;
 }
 
 @media screen and (max-width: 768px) {

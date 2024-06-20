@@ -58,7 +58,7 @@ $dishes = Dish::find()->all();
                 <div class="carousel">
                     <?php foreach ($dishes as $dish): ?>
                         <div class="item" data-day="<?= Html::encode($dish->day_of_week) ?>">
-                            <img src="<?= Html::encode($dish->image) ?>" alt="">
+                            <img src="/<?= Html::encode($dish->image) ?>" alt="">
                             <div class="info">
                                 <h3><?= Html::encode($dish->title) ?></h3>
                                 <p><?= Html::encode($dish->description) ?></p>
@@ -73,7 +73,7 @@ $dishes = Dish::find()->all();
                 </div>
             </div>
 
-            <p class="p-1">A balanced menu helps to maintain health and a slim figure, allows you to be cheerful and active throughout the week. While preparing our dishes, we use products from the best suppliers and always choose products that correspond to the concept of healthy nutrition. For example, lean beef, turkey and chicken, low-calorie sauces, pasta of hard varieties. Delivery is carried out every 2 days.</p>
+            <p class="p-11">A balanced menu helps to maintain health and a slim figure, allows you to be cheerful and active throughout the week. While preparing our dishes, we use products from the best suppliers and always choose products that correspond to the concept of healthy nutrition. For example, lean beef, turkey and chicken, low-calorie sauces, pasta of hard varieties. Delivery is carried out every 2 days.</p>
             <div class="fon">
                 <div class="calc">
                     <h3>Do you want to count your calories?</h3>
@@ -179,37 +179,13 @@ $dishes = Dish::find()->all();
             <div>
                 <input class="email" name="email" type="email" placeholder="Your E-mail" required>
             </div>
-            <div class="submit">
-                <button type="submit">Submit</button>
-            </div>
+
+                <button class="submit"  type="submit">Submit</button>
+
         </form>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!--    <script>-->
-<!--        $(document).ready(function() {-->
-<!--            var carousel = $('.carousel');-->
-<!--            var items = $('.item', carousel);-->
-<!--            var prevBtn = $('.prev');-->
-<!--            var nextBtn = $('.next');-->
-<!--            var currentIndex = 0;-->
-<!--            var itemWidth = items.first().outerWidth();-->
-<!---->
-<!--            function updateCarousel() {-->
-<!--                carousel.css('transform', 'translateX(-' + (currentIndex * itemWidth) + 'px)');-->
-<!--            }-->
-<!---->
-<!--            prevBtn.click(function() {-->
-<!--                currentIndex = (currentIndex - 1 + items.length) % items.length;-->
-<!--                updateCarousel();-->
-<!--            });-->
-<!---->
-<!--            nextBtn.click(function() {-->
-<!--                currentIndex = (currentIndex + 1) % items.length;-->
-<!--                updateCarousel();-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
     <script>
         $(document).ready(function() {
             var carousel = $('.carousel');

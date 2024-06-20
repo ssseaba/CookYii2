@@ -73,7 +73,8 @@ class DishController extends Controller
 
             if ($model->validate()) {
                 if ($model->imageFile) {
-                    $model->image = '/uploads/' . $model->imageFile->baseName . '.' . $model->imageFile->extension;
+                    $model->image = 'uploads/' . $model->imageFile->baseName . '.' . $model->imageFile->extension;
+
                 }
                 if ($model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
